@@ -1,22 +1,23 @@
-import React, { FC } from 'react';
-import { Card as ItemCard, Button } from 'antd';
+import { FC } from 'react';
+import { Card as ItemCard, Button, Input } from 'antd';
 
 
-import './ItemCreate.scss';
+import './CardCreate.scss';
 
 
 
 const CardCreate: FC = () => (
 
-  <div className="Item">
-    <ItemCard size="small" title="description:"
-      extra={<div><Button type="primary" danger>Delete </Button></div>}
+  <div className="card-create">
+    <ItemCard size="small" title={<Input size="small" placeholder="description" />}
+      extra={<div><Button className='card-create__button-create' type="primary" > Create </Button></div>}
       style={{ width: 300 }}>
-      <p>amount:</p>
-      <p>date:</p>
-      <p>category:</p>
-      <p>created:</p>
-      <p>updated:</p>
+      <p><Input size="small" placeholder="amount" /></p>
+      <p><Input size="small" placeholder="date" /></p>
+      <p><Input size="small" placeholder="category" /></p>
+      {/* <p><Input size="small" placeholder="createdAt" /></p>
+      <p><Input size="small" placeholder="updatedAt" /></p>
+      //costructot Date???? */}
     </ItemCard>
 
   </div>

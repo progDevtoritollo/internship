@@ -11,6 +11,7 @@ import { ICard } from './types';
 
 const App = () => {
   const [cards, setCards] = useState<ICard[]>([])
+
   useEffect(() => {
     fetchCards()
   }, [])

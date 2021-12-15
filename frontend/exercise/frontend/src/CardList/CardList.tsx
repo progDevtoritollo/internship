@@ -2,7 +2,7 @@ import { useState, FC, MouseEvent } from 'react';
 
 import { Space, Button, Pagination } from 'antd';
 
-
+import CardCreated from "../CardCreate/CardCreate"
 import Card from '../Card/Card';
 import { ICard } from "../types";
 import "./CardList.scss";
@@ -16,7 +16,7 @@ interface CardListProps {
 
 
 const CardList: FC<CardListProps> = ({ cards, fetchCards }: CardListProps) => {
-	const pageSize = 6;
+	const pageSize = 5;
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [minIndex, setMinIndex] = useState<number>(0);
 	const [maxIndex, setMmaxIndex] = useState<number>(0);
@@ -25,7 +25,7 @@ const CardList: FC<CardListProps> = ({ cards, fetchCards }: CardListProps) => {
 
 	const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
 		fetchCards()
-
+		//Alert
 	}
 
 	const handleChange = (page: number) => {
@@ -39,7 +39,9 @@ const CardList: FC<CardListProps> = ({ cards, fetchCards }: CardListProps) => {
 
 	return (
 		<div className="card-list">
-			<Space direction="horizontal" wrap>
+			<div className='card-list__header'></div>
+			<Space className='cards-conteiner' direction="horizontal" wrap>
+				<CardCreated />
 				{cards.map(
 					(card, index, state) =>
 						index >= minIndex &&
@@ -48,7 +50,7 @@ const CardList: FC<CardListProps> = ({ cards, fetchCards }: CardListProps) => {
 						)
 				)}
 			</Space>
-			<div className='card-list_nav'>
+			<div className='card-list__nav'>
 				<Pagination
 					pageSize={6}
 					current={currentPage}
@@ -56,7 +58,7 @@ const CardList: FC<CardListProps> = ({ cards, fetchCards }: CardListProps) => {
 					onChange={handleChange}
 					style={{ bottom: "0px" }}
 				/>
-				<Button className='button-update' type="primary" onClick={handleClick} key="3">Update</Button></div>
+				<Button className='card-list__button-update' type="primary" onClick={handleClick} key="3">Update</Button></div>
 		</div>
 	);
 };
