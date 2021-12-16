@@ -1,6 +1,6 @@
 import { useState, FC, MouseEvent } from 'react';
 
-import { Space, Button, Pagination } from 'antd';
+import { Space, Button, Pagination, Alert } from 'antd';
 
 import CardCreated from "../CardCreate/CardCreate"
 import Card from '../Card/Card';
@@ -12,10 +12,11 @@ import "./CardList.scss";
 interface CardListProps {
 	cards: ICard[];
 	fetchCards: () => void
+	delCard: (card: ICard) => void
 }
 
 
-const CardList: FC<CardListProps> = ({ cards, fetchCards }: CardListProps) => {
+const CardList: FC<CardListProps> = ({ cards, fetchCards, delCard }: CardListProps) => {
 	const pageSize = 5;
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [minIndex, setMinIndex] = useState<number>(0);
@@ -23,8 +24,8 @@ const CardList: FC<CardListProps> = ({ cards, fetchCards }: CardListProps) => {
 
 
 
-	const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
-		fetchCards()
+	const handleClick = () => {
+		fetchCards();
 		//Alert
 	}
 
@@ -39,14 +40,14 @@ const CardList: FC<CardListProps> = ({ cards, fetchCards }: CardListProps) => {
 
 	return (
 		<div className="card-list">
-			<div className='card-list__header'></div>
+
 			<Space className='cards-conteiner' direction="horizontal" wrap>
 				<CardCreated />
 				{cards.map(
 					(card, index, state) =>
 						index >= minIndex &&
 						index < maxIndex && (
-							<Card key={card._id} card={card} />
+							<Card delCard={delCard} key={card._id} card={card} />
 						)
 				)}
 			</Space>

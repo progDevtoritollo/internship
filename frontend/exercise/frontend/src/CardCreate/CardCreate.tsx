@@ -11,7 +11,7 @@ const CardCreate: FC = () => (
   <div className="card-create">
     <ItemCard size="small" title={<Input size="small" placeholder="description" />}
       extra={<div><Button className='card-create__button-create' type="primary" > Create </Button></div>}
-      style={{ width: 300 }}>
+      style={{ width: 240 }}>
       <p><Input size="small" placeholder="amount" /></p>
       <p><Input size="small" placeholder="date" /></p>
       <p><Input size="small" placeholder="category" /></p>

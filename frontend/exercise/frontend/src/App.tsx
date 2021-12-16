@@ -16,6 +16,18 @@ const App = () => {
     fetchCards()
   }, [])
 
+
+  async function delCard(card: ICard) {
+    try {
+      // eslint-disable-next-line no-template-curly-in-string
+      const respone = await
+        axios.delete(`http://localhost:5000/expenses/${card._id}`)
+      console.log(respone.data)
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
   async function fetchCards() {
     try {
       const respone = await axios.get<ICard[]>('http://localhost:5000/expenses')
@@ -27,7 +39,9 @@ const App = () => {
 
 
   return (
-    <CardList cards={cards} fetchCards={fetchCards} />
+    <>
+      <CardList delCard={delCard} cards={cards} fetchCards={fetchCards} />
+    </>
   );
 }
 

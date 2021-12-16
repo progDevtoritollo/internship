@@ -1,27 +1,39 @@
-import { FC } from 'react';
+import { FC, MouseEventHandler } from 'react';
 import { Card as ItemCard, Button } from 'antd';
 
 import { ICard } from '../types';
 import './Card.scss';
 
 interface CardItemProps {
-  card: ICard
+  card: ICard;
+  delCard: (card: ICard) => void;
 }
 
 
-const Card: FC<CardItemProps> = ({ card }) => (
-  <div className="Item">
-    <ItemCard size="small" title={`description: ${card.description}`}
-      extra={<div><Button type="primary" danger>Delete </Button></div>}
-      style={{ width: 300 }}>
-      <p>amount:{" " + card.amount}</p>
-      <p>date:{" " + card.date}</p>
-      <p>category:{" " + card.category}</p>
-      <p>created:{" " + card.createdAt}</p>
-      <p>updated:{" " + card.updatedAt}</p>
-    </ItemCard>
-  </div >
-);
 
 
+const Card: FC<CardItemProps> = ({ card, delCard }) => {
+
+
+  // const handleClick = (card: ICard,) => {
+  // delCard(card)
+  // console.log(e)
+  // };
+
+
+  return (
+    <div className="Item">
+      <ItemCard size="small" title={`description: ${card.description}`}
+        extra={<div><Button onClick={() => delCard(card)} type="primary" danger>Delete </Button></div>}
+        style={{ width: 280 }}>
+        <p>id:{" " + card._id}</p>
+        <p>amount:{" " + card.amount}</p>
+        <p>date:{" " + card.date}</p>
+        <p>category:{" " + card.category}</p>
+        <p>created:{" " + card.createdAt}</p>
+        <p>updated:{" " + card.updatedAt}</p>
+      </ItemCard >
+    </div >
+  );
+}
 export default Card;
