@@ -1,32 +1,32 @@
-import { useState, FC, MouseEvent } from 'react';
+import { useState, FC } from 'react';
 
-import { Space, Button, Pagination, Alert } from 'antd';
+import { Space, Button, Pagination } from 'antd';
 
 import CardCreated from "../CardCreate/CardCreate"
 import Card from '../Card/Card';
-import { ICard } from "../types";
+import { ICard, ICategory } from "../types";
 import "./CardList.scss";
 
 
 
 interface CardListProps {
 	cards: ICard[];
+	categories: ICategory[];
 	fetchCards: () => void
 	delCard: (card: ICard) => void
 }
 
 
-const CardList: FC<CardListProps> = ({ cards, fetchCards, delCard }: CardListProps) => {
+const CardList: FC<CardListProps> = ({ cards, fetchCards, delCard, categories }: CardListProps) => {
 	const pageSize = 5;
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [minIndex, setMinIndex] = useState<number>(0);
 	const [maxIndex, setMmaxIndex] = useState<number>(0);
 
-
-
 	const handleClick = () => {
 		fetchCards();
 		//Alert
+
 	}
 
 	const handleChange = (page: number) => {
@@ -42,12 +42,12 @@ const CardList: FC<CardListProps> = ({ cards, fetchCards, delCard }: CardListPro
 		<div className="card-list">
 
 			<Space className='cards-conteiner' direction="horizontal" wrap>
-				<CardCreated />
+				<CardCreated categories={categories} />
 				{cards.map(
-					(card, index, state) =>
+					(card, index) =>
 						index >= minIndex &&
 						index < maxIndex && (
-							<Card delCard={delCard} key={card._id} card={card} />
+							<Card fetchCards={fetchCards} delCard={delCard} key={card._id} card={card} />
 						)
 				)}
 			</Space>

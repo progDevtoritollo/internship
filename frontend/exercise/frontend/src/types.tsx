@@ -9,3 +9,8 @@ export interface ICard {
 	__v: number;
 }
 
+export interface ICategory {
+	_id: string;
+	title: string;
+	__v: number;
+}

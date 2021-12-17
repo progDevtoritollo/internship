@@ -1,6 +1,7 @@
 .card-list {
   .cards-conteiner {
-    // min-height: 280px;
+    display: flex;
+    justify-content: space-between;
   }
   margin: 10px;
   &__nav {

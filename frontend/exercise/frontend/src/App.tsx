@@ -1,19 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import axios from "axios"
 
 import './App.css';
 import CardList from './CardList/CardList';
-import { ICard } from './types';
+import { ICard, ICategory } from './types';
 
 
 
 
 const App = () => {
   const [cards, setCards] = useState<ICard[]>([])
+  const [categories, setCategory] = useState<ICategory[]>([])
 
   useEffect(() => {
-    fetchCards()
+    fetchCards();
+    fetchCategory();
   }, [])
 
 
@@ -30,17 +32,25 @@ const App = () => {
 
   async function fetchCards() {
     try {
-      const respone = await axios.get<ICard[]>('http://localhost:5000/expenses')
+      let respone = await axios.get<ICard[]>('http://localhost:5000/expenses')
       setCards(respone.data)
     } catch (e) {
       console.error(e)
     }
   }
-
+  async function fetchCategory() {
+    try {
+      let res = await axios.get<ICategory[]>('http://localhost:5000/categories')
+      setCategory(res.data)
+      console.log(categories)
+    } catch (e) {
+      console.error(e)
+    }
+  }
 
   return (
     <>
-      <CardList delCard={delCard} cards={cards} fetchCards={fetchCards} />
+      <CardList categories={categories} delCard={delCard} cards={cards} fetchCards={fetchCards} />
     </>
   );
 }
