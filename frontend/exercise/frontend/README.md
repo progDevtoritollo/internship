@@ -1,4 +1,14 @@
-# Getting Started with Create React App
+# Comprehensive documentation to launch the application:
+
+-> Front-end
+cd internship/frontend/exercise/frontend
+npm start
+Check the Front-end generated http://localhost:3000
+-> Back-end
+cd internship/frontend/exercise/server
+docker-compose up api
+
+  <!-- # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -43,4 +53,4 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+To learn React, check out the [React documentation](https://reactjs.org/). -->
