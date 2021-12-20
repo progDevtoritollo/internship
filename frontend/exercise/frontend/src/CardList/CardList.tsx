@@ -1,4 +1,4 @@
-import { useState, FC } from 'react';
+import { useState, FC, useEffect, useLayoutEffect } from 'react';
 
 import { Space, Button, Pagination } from 'antd';
 
@@ -19,14 +19,23 @@ interface CardListProps {
 
 const CardList: FC<CardListProps> = ({ cards, fetchCards, delCard, categories }: CardListProps) => {
 	const pageSize = 5;
-	const [currentPage, setCurrentPage] = useState<number>(1);
+	const [currentPage, setCurrentPage] = useState<number>();
 	const [minIndex, setMinIndex] = useState<number>(0);
 	const [maxIndex, setMmaxIndex] = useState<number>(0);
+
+	useEffect(() => {
+		console.log(currentPage)  // why currentPagr undefinde 
+	});
+
+	useLayoutEffect(() => {
+		setCurrentPage(1)
+	}, [])
+
+
 
 	const handleClick = () => {
 		fetchCards();
 		//Alert
-
 	}
 
 	const handleChange = (page: number) => {
@@ -52,15 +61,19 @@ const CardList: FC<CardListProps> = ({ cards, fetchCards, delCard, categories }:
 				)}
 			</Space>
 			<div className='card-list__nav'>
+				<p>Select page:  </p>
+				&emsp;
 				<Pagination
-					pageSize={6}
+					defaultCurrent={1}   // fix at the end
+					pageSize={5}
 					current={currentPage}
 					total={cards.length}
 					onChange={handleChange}
 					style={{ bottom: "0px" }}
 				/>
 				<Button className='card-list__button-update' type="primary" onClick={handleClick} key="3">Update</Button></div>
-		</div>
+
+		</div >
 	);
 };
 

@@ -15,9 +15,16 @@ interface CardCreateProps {
 
 
 const CardCreate: FC<CardCreateProps> = ({ categories }) => {
+  const NewCard = {
+    amount: 4545,
+    date: "string",
+    description: undefined,
+    category: undefined, //     DropList
+  }
 
-  function handleChangeSelect(value: any, categories: ICategory) {
-    console.log(`selected ${value}`);
+  function handleChange(value: any) {
+    console.log('selected ' + value);
+    NewCard.category = value;
   }
 
   async function CreateCard(value: object) {
@@ -30,17 +37,20 @@ const CardCreate: FC<CardCreateProps> = ({ categories }) => {
     }
   }
 
-  const onFinish = (values: any,) => {
+  const onFinish = (values: any) => {
     console.log('Success:', values);
     const currentDate = new Date();
     const formatedDate = currentDate.getFullYear() + "-" + currentDate.getMonth() + "-" + currentDate.getDay() + "T" + currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds() + ".080Z";
 
-    const NewCard = {
-      "amount": values.amount,
-      "date": formatedDate,
-      "description": values.description,
-      "category": values.category, // ..--DropList
-    }
+    // NewCard = {
+    //   "amount": values.amount,
+    //   "date": formatedDate,
+    //   "description": values.description,
+    //   // "category": values.category, //     DropList
+    // }
+    NewCard.amount = values.amount;
+    NewCard.date = formatedDate;
+    NewCard.description = values.description
 
     CreateCard(NewCard)
     console.log(NewCard)
@@ -78,7 +88,7 @@ const CardCreate: FC<CardCreateProps> = ({ categories }) => {
           </Form.Item>
 
           <Form.Item>
-            <Select defaultValue="choose" style={{ width: 120 }} onChange={() => handleChangeSelect}>
+            <Select defaultValue="choose" style={{ width: 120 }} onChange={handleChange}>
               {categories.map(
                 (category: ICategory) => (< Option value={category.title}>{category.title}</Option>)
               )}
