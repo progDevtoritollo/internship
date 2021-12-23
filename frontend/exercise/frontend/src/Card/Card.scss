@@ -1,0 +1,13 @@
+.item {
+  &_footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .btn-update {
+      background-color: rgb(11, 130, 0);
+    }
+    .btn-upload {
+      background-color: orange;
+    }
+  }
+}
