@@ -1,3 +1,9 @@
+
+
+# My part of task 
+internship/frontend/exercise/frontend/
+
+
 # Provectus Internship Program 
 
 :point_right:  **Open a PR with your completed test assignment, and apply through the [Internship Application Form](https://www.surveymonkey.com/r/InternshipProvectus)!**
